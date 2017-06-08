@@ -1,0 +1,15 @@
+<litepal>
+
+    <dbname value = "destiny_weather" />
+
+    <version value = "1" />
+
+    <list>
+
+        <mapping class = "org.yessan.destinyweather.android.db.Province" />
+        <mapping class = "org.yessan.destinyweather.android.db.City" />
+        <mapping class = "org.yessan.destinyweather.android.db.County" />
+
+    </list>
+
+</litepal>
