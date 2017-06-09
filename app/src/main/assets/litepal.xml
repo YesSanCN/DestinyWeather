@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <litepal>
 
     <dbname value = "destiny_weather" />
@@ -6,9 +7,9 @@
 
     <list>
 
-        <mapping class = "org.yessan.destinyweather.android.db.Province" />
-        <mapping class = "org.yessan.destinyweather.android.db.City" />
-        <mapping class = "org.yessan.destinyweather.android.db.County" />
+        <mapping class = "org.yessan.destinyweather.db.Province" />
+        <mapping class = "org.yessan.destinyweather.db.City" />
+        <mapping class = "org.yessan.destinyweather.db.County" />
 
     </list>
 
