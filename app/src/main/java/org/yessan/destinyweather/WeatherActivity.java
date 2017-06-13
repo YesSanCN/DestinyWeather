@@ -36,8 +36,11 @@ import okhttp3.Response;
 public class WeatherActivity extends AppCompatActivity {
 
     public DrawerLayout drawerLayout;
+
     public SwipeRefreshLayout swipeRefresh;
+
     private Button navButton;
+
     private String mWeatherId;
 
     private ScrollView weatherLayout;
@@ -99,7 +102,6 @@ public class WeatherActivity extends AppCompatActivity {
         navButton = ( Button )findViewById( R.id.nav_button );
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences( this );
-
         String weatherString = prefs.getString( "weather", null );
         if ( weatherString != null ) {
 
@@ -120,7 +122,6 @@ public class WeatherActivity extends AppCompatActivity {
             requestWeather( mWeatherId );
 
         }
-
         swipeRefresh.setOnRefreshListener( new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -157,23 +158,10 @@ public class WeatherActivity extends AppCompatActivity {
      */
     public void requestWeather( final String weatherId ) {
 
+        mWeatherId = weatherId;
+
         String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=4b87667a506842ff8236c61f6b05c12f";
         HttpUtil.sendOkHttpRequest( weatherUrl, new Callback() {
-            @Override
-            public void onFailure( Call call, IOException e ) {
-
-                runOnUiThread( new Runnable() {
-                    @Override
-                    public void run() {
-
-                        Toast.makeText( WeatherActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT ).show();
-
-                        swipeRefresh.setRefreshing( false );
-
-                    }
-                } );
-
-            }
 
             @Override
             public void onResponse( Call call, Response response ) throws IOException {
@@ -205,6 +193,23 @@ public class WeatherActivity extends AppCompatActivity {
                 } );
 
             }
+
+            @Override
+            public void onFailure( Call call, IOException e ) {
+
+                runOnUiThread( new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Toast.makeText( WeatherActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT ).show();
+
+                        swipeRefresh.setRefreshing( false );
+
+                    }
+                } );
+
+            }
+
         } );
 
         loadBingPic();
